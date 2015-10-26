@@ -2,6 +2,7 @@ package org.time2java.jsudoku;
 
 /**
  * @author time2java
+ * Save  coordinats of unknown 
  */
 public class BruttedCell {
     int i ;
