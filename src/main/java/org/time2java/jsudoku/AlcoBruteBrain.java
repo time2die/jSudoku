@@ -7,12 +7,12 @@ import java.util.List;
 import javax.swing.JTextField;
 
 /**
- * @author time2java
- * даный алгоритм посетил меня по дороге с мальчишника домой
- * dump bruttforce alhoritm for sudoky(don't do it in you home without adult people)
+ * @author time2java даный алгоритм посетил меня по дороге с мальчишника домой
+ * dump bruttforce alhoritm for sudoky(don't do it in you home without adult
+ * people)
  */
 public class AlcoBruteBrain {
-    
+
     public static void main(String[] args) {
         AlcoBruteBrain brain = new AlcoBruteBrain(null);
         brain.work();
@@ -32,7 +32,7 @@ public class AlcoBruteBrain {
     private int[][] buildModel(JTextField[][] fields) {
         //todo parse
         int[][] result = {
-            {0, 1, 6, 4, 8, 5, 2, 7, 9}, //3
+            {0, 0, 6, 4, 8, 5, 2, 7, 9}, //3 1
             {9, 0, 5, 1, 7, 2, 3, 4, 6},
             {7, 4, 0, 9, 6, 3, 8, 1, 5},
             {4, 9, 8, 0, 5, 6, 7, 3, 1},
@@ -96,75 +96,84 @@ public class AlcoBruteBrain {
 
         for (; iter.compareTo(maxBI) < 0; iter = iter.add(BigInteger.ONE)) {
 
-            String stringModel = iter.toString();
-            
-            if(stringModel.indexOf('0') != -1){
-                continue ;
+            String stringModel = getIterString(iter) ;
+
+            if (stringModel.indexOf('0') != -1) {
+                continue;
             }
-            
-            for (int charIter = 0; charIter < stringModel.length(); charIter++) {
-                BruttedCell bcIter = xxx.get(charIter);
-                gameTable[bcIter.i][bcIter.j] = Integer.valueOf(stringModel.charAt(charIter) + "");
+
+            fillTable(xxx, stringModel);
+
+            if (canStope()) {
+                printGameTable();
+                break;
             }
-            
-            if(canStope()){
-                printGameTable();     
-                break ;
-            }
-        
+
+        }
+    }
+    
+   private String getIterString(BigInteger iter){
+       return iter.toString() ;
+   }
+
+    private void fillTable(List<BruttedCell> xxx, String stringModel) {
+        for (int charIter = 0; charIter < stringModel.length(); charIter++) {
+            BruttedCell bcIter = xxx.get(charIter);
+            gameTable[bcIter.i][bcIter.j] = Integer.valueOf(stringModel.charAt(charIter) + "");
         }
     }
 
     private boolean canStope() {
         //test cell
-        for(int [] arrayIter : gameTable){
-            if(lineBroken(arrayIter)){
-                brokenLine++ ;
-                return false ;
+        for (int[] arrayIter : gameTable) {
+            if (lineBroken(arrayIter)) {
+                brokenLine++;
+                return false;
             }
         }
         //test row
-        for(int i = 0 ; i < 9 ; i ++){
-         int cellIter [] = {gameTable[i][0],
-                            gameTable[i][1],
-                            gameTable[i][2],
-                            gameTable[i][3],
-                            gameTable[i][4],
-                            gameTable[i][5],
-                            gameTable[i][6],
-                            gameTable[i][7],
-                            gameTable[i][8]};
-             
-         if(lineBroken(cellIter)){
-             return false ;
-         }
-        }
-        
-        return true ;   
-    }
-    
-    private int brokenLine = 0 ;
-    private boolean lineBroken(int [] line){
-        //sum test line
-        int sum = 0 ;
-        for(int lineIter : line){
-            sum += lineIter ;
-        }
-        
-        if(sum > 81){
-            return true ;
-        }
-        
-        //
-        HashSet<Integer> set = new HashSet<Integer>() ;
-        for(int lineIter : line){
-            if(set.contains(lineIter)){
-                return true ;
+        for (int i = 0; i < 9; i++) {
+            int cellIter[] = {gameTable[i][0],
+                gameTable[i][0],
+                gameTable[i][1],
+                gameTable[i][2],
+                gameTable[i][3],
+                gameTable[i][4],
+                gameTable[i][5],
+                gameTable[i][6],
+                gameTable[i][7],
+                gameTable[i][8]};
+
+            if (lineBroken(cellIter)) {
+                return false;
             }
-            set.add(lineIter) ;
         }
-        
-        return false; 
+
+        return true;
+    }
+
+    private int brokenLine = 0;
+
+    private boolean lineBroken(int[] line) {
+        //sum test line
+        int sum = 0;
+        for (int lineIter : line) {
+            sum += lineIter;
+        }
+
+        if (sum > 81) {
+            return true;
+        }
+
+        //
+        HashSet<Integer> set = new HashSet<Integer>();
+        for (int lineIter : line) {
+            if (set.contains(lineIter)) {
+                return true;
+            }
+            set.add(lineIter);
+        }
+
+        return false;
     }
 }
-
