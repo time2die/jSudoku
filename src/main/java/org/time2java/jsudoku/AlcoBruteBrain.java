@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 /**
  * @author time2java
  * даный алгоритм посетил меня по дороге с мальчишника домой
+ * dump bruttforce alhoritm for sudoky(don't do it in you home without adult people)
  */
 public class AlcoBruteBrain {
     
