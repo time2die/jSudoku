@@ -187,7 +187,6 @@ public class jSudokuMain extends javax.swing.JFrame {
 
         AlcoBruteBrain brain = new AlcoBruteBrain(fields) ;
         brain.work() ;
-        brain.sayResults() ;
         
         //           fields = new JTextField[][]{
 //            {jTextField3, jTextField30, jTextField31},

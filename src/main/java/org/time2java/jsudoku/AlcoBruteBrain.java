@@ -16,7 +16,6 @@ public class AlcoBruteBrain {
     public static void main(String[] args) {
         AlcoBruteBrain brain = new AlcoBruteBrain(null);
         brain.work();
-        brain.sayResults();
     }
 
     int[][] gameTable;
@@ -33,7 +32,7 @@ public class AlcoBruteBrain {
     private int[][] buildModel(JTextField[][] fields) {
         //todo parse
         int[][] result = {
-            {3, 1, 6, 4, 8, 5, 2, 7, 9},
+            {0, 1, 6, 4, 8, 5, 2, 7, 9}, //3
             {9, 0, 5, 1, 7, 2, 3, 4, 6},
             {7, 4, 0, 9, 6, 3, 8, 1, 5},
             {4, 9, 8, 0, 5, 6, 7, 3, 1},
@@ -95,7 +94,6 @@ public class AlcoBruteBrain {
         BigInteger iter = new BigInteger(biModel.toByteArray());
         BigInteger maxBI = getMaxValueForBrutt(xxx);
 
-        int g = 0;
         for (; iter.compareTo(maxBI) < 0; iter = iter.add(BigInteger.ONE)) {
 
             String stringModel = iter.toString();
@@ -110,14 +108,11 @@ public class AlcoBruteBrain {
             }
             
             if(canStope()){
+                printGameTable();     
                 break ;
             }
-            
+        
         }
-    }
-
-    void sayResults() {
-        printGameTable(); 
     }
 
     private boolean canStope() {
