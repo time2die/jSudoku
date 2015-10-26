@@ -32,7 +32,7 @@ public class AlcoBruteBrain {
     private int[][] buildModel(JTextField[][] fields) {
         //todo parse
         int[][] result = {
-            {0, 0, 6, 4, 8, 5, 2, 7, 9}, //3 1
+            {3, 1, 6, 4, 8, 5, 2, 7, 9}, //3 1
             {9, 0, 5, 1, 7, 2, 3, 4, 6},
             {7, 4, 0, 9, 6, 3, 8, 1, 5},
             {4, 9, 8, 0, 5, 6, 7, 3, 1},
@@ -106,6 +106,7 @@ public class AlcoBruteBrain {
 
             if (canStope()) {
                 printGameTable();
+                System.out.println("unknown: "+ xxx.size());
                 break;
             }
 
@@ -134,15 +135,14 @@ public class AlcoBruteBrain {
         //test row
         for (int i = 0; i < 9; i++) {
             int cellIter[] = {gameTable[i][0],
-                gameTable[i][0],
-                gameTable[i][1],
-                gameTable[i][2],
-                gameTable[i][3],
-                gameTable[i][4],
-                gameTable[i][5],
-                gameTable[i][6],
-                gameTable[i][7],
-                gameTable[i][8]};
+                              gameTable[i][1],
+                              gameTable[i][2],
+                              gameTable[i][3],
+                              gameTable[i][4],
+                              gameTable[i][5],
+                              gameTable[i][6],
+                              gameTable[i][7],
+                              gameTable[i][8]};
 
             if (lineBroken(cellIter)) {
                 return false;
