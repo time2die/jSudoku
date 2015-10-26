@@ -184,48 +184,55 @@ public class jSudokuMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        fields = new JTextField[][]{
-            {jTextField3, jTextField30, jTextField31},
-            {jTextField32, jTextField33, jTextField34},
-            {jTextField35, jTextField36, jTextField37},
-            {jTextField38, jTextField39, jTextField4},
-            {jTextField40, jTextField41, jTextField42},
-            {jTextField43, jTextField44, jTextField45},
-            {jTextField46, jTextField47, jTextField48},
-            {jTextField49, jTextField5, jTextField50},
-            {jTextField51, jTextField52, jTextField53},};
 
-        gameTable = new int[9][9];
-        accessTable = new int[9][9];
+        AlcoBruteBrain brain = new AlcoBruteBrain(fields) ;
+        brain.work() ;
+        brain.sayResults() ;
+        
+        //           fields = new JTextField[][]{
+//            {jTextField3, jTextField30, jTextField31},
+//            {jTextField32, jTextField33, jTextField34},
+//            {jTextField35, jTextField36, jTextField37},
+//            {jTextField38, jTextField39, jTextField4},
+//            {jTextField40, jTextField41, jTextField42},
+//            {jTextField43, jTextField44, jTextField45},
+//            {jTextField46, jTextField47, jTextField48},
+//            {jTextField49, jTextField5, jTextField50},
+//            {jTextField51, jTextField52, jTextField53},};
+//
+//        gameTable = new int[9][9];
+//        accessTable = new int[9][9];
+//
+//        for (int i = 0; i < 9; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                JTextField iter = fields[i][j];
+//                if (iter.getText().length() < 3) {
+//                    System.err.println("fuck off");
+//                    System.exit(0);
+//                }
+//                for (int si = 0; si < 3; si++) {
+//                    char cIter = iter.getText().charAt(si);
+//                    if (cIter == 'x') {
+//                        continue;
+//                    }
+//
+//                    int ii = Integer.valueOf(cIter + "");
+//                    gameTable[i][j + si] = ii;
+//                    accessTable[i][j + si] = 1;
+//                }
+//
+//            }
+//
+//        }
+//        for (int i = 0; i < 9; i++) {
+//            for (int j = 0; j < 9; j++) {
+//                System.out.print(gameTable[i][j]+"  ");
+//            }
+//            System.out.println("\n");
+//        }
+//    
 
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 3; j++) {
-                JTextField iter = fields[i][j];
-                if (iter.getText().length() < 3) {
-                    System.err.println("fuck off");
-                    System.exit(0);
-                }
-                for (int si = 0; si < 3; si++) {
-                    char cIter = iter.getText().charAt(si);
-                    if (cIter == 'x') {
-                        continue;
-                    }
-
-                    int ii = Integer.valueOf(cIter + "");
-                    gameTable[i][j + si] = ii;
-                    accessTable[i][j + si] = 1;
-                }
-
-            }
-
-        }
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                System.out.print(gameTable[i][j]+"  ");
-            }
-            System.out.println("\n");
-        }
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
